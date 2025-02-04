@@ -100,8 +100,8 @@ int main(int argc, char* argv[])
     {
         std::string command;
         
-        // command = "./Engine/Build/BatchFiles/RunUAT.bat -ScriptsForProject=" + path + " BuildCookRun -project=" + path + " -noP4 -clientconfig=Shipping -serverconfig=Shipping -nocompileeditor -utf8output -platform=Win64 -build -cook -unversionedcookedcontent -stage -package -archive -archivedirectory="+package_path;
-        //
+        command = "./Engine/Build/BatchFiles/RunUAT.bat -ScriptsForProject=" + path + " BuildCookRun -project=" + path + " -noP4 -clientconfig=Shipping -serverconfig=Shipping -nocompileeditor -utf8output -platform=Win64 -build -cook -unversionedcookedcontent -stage -package -archive -archivedirectory="+packagepath;
+        
     
         int result = std::system(command.c_str());
         if (result == 0)
