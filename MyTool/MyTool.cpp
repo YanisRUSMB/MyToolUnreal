@@ -86,7 +86,7 @@ int main(int argc, char* argv[])
         std::string project_name = path.substr(path.find_last_of("/\\") + 1);
         project_name = project_name.substr(0, project_name.find_last_of(".")); 
         command = "powershell /C \"./Engine/Build/BatchFiles/Build.bat " + 
-                  project_name + " Game Development \"" + 
+                  project_name + " Win64 Development \"" + 
                   path + "\" -waitmutex\"";
 
         int result = std::system(command.c_str());
@@ -100,7 +100,7 @@ int main(int argc, char* argv[])
     {
         std::string command;
         
-        command = "./Engine/Build/BatchFiles/RunUAT.bat -ScriptsForProject=" + path + " BuildCookRun -project=" + path + " -noP4 -clientconfig=Shipping -serverconfig=Shipping -nocompileeditor -utf8output -platform=Win64 -build -cook -unversionedcookedcontent -stage -package -archive -archivedirectory="+packagepath;
+        command = "./Engine/Build/BatchFiles/RunUAT.bat -ScriptsForProject=" + path + " BuildCookRun -project=" + path + "  -clientconfig=Shipping -serverconfig=Shipping -nocompileeditor -utf8output -platform=Win64 -build -cook -unversionedcookedcontent -stage -package -archive -archivedirectory="+packagepath;
         
     
         int result = std::system(command.c_str());
