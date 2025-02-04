@@ -7,15 +7,20 @@ using json = nlohmann::json;
 
 int main(int argc, char* argv[])
 {
-    // if (argc < 3 || (std::string(argv[2]) != "show-infos" && std::string(argv[2]) != "build" && std::string(argv[2]) != "package")) {
+    // if (argc < 4 || (std::string(argv[2]) != "show-infos" && std::string(argv[2]) != "build" && std::string(argv[2]) != "package")) {
     //     std::cout << "Usage : MyTool [CHEMIN DU UPROJECT] show-infos/build/package" << std::endl;
     //     return 0;
     // }
 
     std::string path = argv[1];
     std::string command = argv[2];
-    std::string package_path = argv[3];
-
+    std::string packagepath;
+    if (argc > 3) {
+        packagepath = argv[3];
+    } else {
+        packagepath = ""; // Valeur par défaut si aucun argument n'est fourni
+    }
+    
     if(command == "show-infos")
     {
         std::ifstream file(path);
@@ -94,14 +99,15 @@ int main(int argc, char* argv[])
     if(command == "package")
     {
         std::string command;
-        command = "./Engine/Build/BatchFiles/RunUAT.bat -ScriptsForProject=" + path + " BuildCookRun -project=" + path + " -noP4 -clientconfig=Shipping -serverconfig=Shipping -nocompileeditor -utf8output -platform=Win64 -build -cook -unversionedcookedcontent -stage -package -archive -archivedirectory="+package_path;
-
-
+        
+        // command = "./Engine/Build/BatchFiles/RunUAT.bat -ScriptsForProject=" + path + " BuildCookRun -project=" + path + " -noP4 -clientconfig=Shipping -serverconfig=Shipping -nocompileeditor -utf8output -platform=Win64 -build -cook -unversionedcookedcontent -stage -package -archive -archivedirectory="+package_path;
+        //
+    
         int result = std::system(command.c_str());
         if (result == 0)
             std::cout << "Packaging terminé avec succès !" << std::endl;
         else
             std::cout << "Erreur lors du packaging. Code : " << result << std::endl;
-    }
+    };
     return 0;
 }
