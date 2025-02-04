@@ -99,10 +99,8 @@ int main(int argc, char* argv[])
     if(command == "package")
     {
         std::string command;
-        
-        command = "./Engine/Build/BatchFiles/RunUAT.bat -ScriptsForProject=" + path + " BuildCookRun -project=" + path + "  -clientconfig=Shipping -serverconfig=Shipping -nocompileeditor -utf8output -platform=Win64 -build -cook -unversionedcookedcontent -stage -package -archive -archivedirectory="+packagepath;
-        
-    
+        command = "powershell /C ./Engine/Build/BatchFiles/RunUAT.bat -ScriptsForProject=" + path + "BuildCookRun -project=" + path + " -noP4 -clientconfig=Shipping -serverconfig=Shipping -nocompileeditor -utf8output -platform=Win64 -build -cook -unversionedcookedcontent -stage -package -archive -archivedirectory=" + packagepath;
+
         int result = std::system(command.c_str());
         if (result == 0)
             std::cout << "Packaging terminé avec succès !" << std::endl;
